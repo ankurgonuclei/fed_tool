@@ -66,7 +66,7 @@
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center">
       <h1 class="text-4xl font-bold text-gray-900 mb-8">FedMobile Tool</h1>
-      <p class="text-xl text-gray-600 mb-12">Manage your mobile app tiles and configurations</p>
+      <p class="text-xl text-gray-600 mb-12">Manage your mobile app tiles, configurations, and app preview</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -101,6 +101,37 @@
         </div>
       </div>
 
+      <!-- Mobile App Preview Card -->
+      <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="p-6">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 bg-indigo-500 rounded-md p-3">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </div>
+            <div class="ml-5 w-0 flex-1">
+              <h3 class="text-lg font-medium text-gray-900">Mobile App Preview</h3>
+              <p class="mt-1 text-sm text-gray-500">After you have configured the tiles, you can preview the app</p>
+            </div>
+          </div>
+          <div class="mt-6">
+            <a
+              href="/apppreview"
+              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            >
+              Preview App
+            </a>
+          </div>
+        </div>
+        <div class="bg-gray-50 px-6 py-4">
+          <div class="text-sm">
+            <span class="font-medium text-gray-900">{$tiles.length}</span>
+            <span class="text-gray-500"> tiles configured</span>
+          </div>
+        </div>
+      </div>
+      
       <!-- Coming Soon Card -->
       <div class="bg-white overflow-hidden shadow rounded-lg">
         <div class="p-6">
