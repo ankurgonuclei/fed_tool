@@ -42,6 +42,7 @@
   function addTile() {
     formData.tiles = [...formData.tiles, {
       type: 'icon_grid',
+      title: '',
       displayName: '',
       gridNudgeName: null,
       imageUrl: '',
@@ -91,8 +92,9 @@
   <form on:submit|preventDefault={handleSubmit} class="space-y-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div>
-        <label class="block text-sm font-medium text-gray-700">Type</label>
+        <label for="type" class="block text-sm font-medium text-gray-700">Type</label>
         <select
+          id="type"
           bind:value={formData.type}
           required
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -104,8 +106,9 @@
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Display Name</label>
+        <label for="displayName" class="block text-sm font-medium text-gray-700">Display Name</label>
         <input
+          id="displayName"
           type="text"
           bind:value={formData.displayName}
           required
@@ -114,8 +117,9 @@
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Grid Nudge Name</label>
+        <label for="gridNudgeName" class="block text-sm font-medium text-gray-700">Grid Nudge Name</label>
         <select
+          id="gridNudgeName"
           bind:value={formData.gridNudgeName}
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
         >
@@ -127,8 +131,9 @@
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Category Icon URL</label>
+        <label for="categoryIconUrl" class="block text-sm font-medium text-gray-700">Category Icon URL</label>
         <input
+          id="categoryIconUrl"
           type="text"
           bind:value={formData.categoryIconUrl}
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -139,8 +144,9 @@
       </div>
 
       <div>
-        <label class="block text-sm font-medium text-gray-700">Background</label>
+        <label for="background" class="block text-sm font-medium text-gray-700">Background</label>
         <input
+          id="background"
           type="text"
           bind:value={formData.background}
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -149,8 +155,9 @@
 
       {#if formData.tiles.length > 2}
         <div>
-          <label class="block text-sm font-medium text-gray-700">Home Screen Tile Count</label>
+          <label for="homeScreenTileCount" class="block text-sm font-medium text-gray-700">Home Screen Tile Count</label>
           <input
+            id="homeScreenTileCount"
             type="number"
             bind:value={formData.homeScreenTileCount}
             required
@@ -165,10 +172,11 @@
       <div class="flex items-center">
         <input
           type="checkbox"
+          id="aboveCategoryPresent"
           bind:checked={formData.aboveCategoryPresent}
           class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
         />
-        <label class="ml-2 block text-sm text-gray-900">Above Category Present</label>
+        <label for="aboveCategoryPresent" class="ml-2 block text-sm text-gray-900">Above Category Present</label>
       </div>
 
       {#if formData.aboveCategoryPresent}
@@ -187,10 +195,11 @@
       <div class="flex items-center">
         <input
           type="checkbox"
+          id="belowCategoryPresent"
           bind:checked={formData.belowCategoryPresent}
           class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
         />
-        <label class="ml-2 block text-sm text-gray-900">Below Category Present</label>
+        <label for="belowCategoryPresent" class="ml-2 block text-sm text-gray-900">Below Category Present</label>
       </div>
 
       {#if formData.belowCategoryPresent}
@@ -333,28 +342,31 @@
           </div>
 
           <div class="form-group">
-            <label>Ad Unit IDs</label>
-            {#each editingTile.adUnitIds as adUnitId, index}
-              <div class="ad-unit-row">
-                <input
-                  type="text"
-                  bind:value={editingTile.adUnitIds[index]}
-                  required
-                />
-                <button
-                  type="button"
-                  on:click={() => editingTile.adUnitIds.splice(index, 1)}
-                >
-                  Remove
-                </button>
-              </div>
-            {/each}
-            <button
-              type="button"
-              on:click={() => editingTile.adUnitIds.push('')}
-            >
-              Add Ad Unit ID
-            </button>
+            <label for="adUnitIds">Ad Unit IDs</label>
+            {#if editingTile}
+              {#each editingTile.adUnitIds as adUnitId, index}
+                <div class="ad-unit-row">
+                  <input
+                    type="text"
+                    id="adUnitIds"
+                    bind:value={editingTile.adUnitIds[index]}
+                    required
+                  />
+                  <button
+                    type="button"
+                    on:click={() => editingTile?.adUnitIds.splice(index, 1)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              {/each}
+              <button
+                type="button"
+                on:click={() => editingTile?.adUnitIds.push('')}
+              >
+                Add Ad Unit ID
+              </button>
+            {/if}
           </div>
 
           <div class="form-group">

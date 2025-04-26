@@ -39,29 +39,35 @@
 				<div class="notch"></div>
 			</div>
 			<div class="device-content">
-				<div class="space-y-4 p-4">
-					{#each $tiles as tile}
-						<div class="rounded-2xl bg-white p-3">
-							<h2 class="mb-3 text-sm font-semibold text-blue-900">{tile.displayName}</h2>
-							<div class="flex snap-x snap-mandatory space-x-4 overflow-x-auto">
-								<div class="w-24 flex-none snap-center">
-									<div class="flex flex-col items-center p-2">
-										<div class="h-8 w-8 overflow-hidden">
-											<img
-												src={getImageUrl(tile.imageUrl)}
-												alt={tile.displayName}
-												class="h-full w-full object-cover"
-												on:error={handleImageError}
-											/>
+				<div class="space-y-4 p-4 h-full">
+					{#if $tiles.length === 0}
+						<div class="flex flex-col h-[calc(100vh-100px)] items-center justify-center">
+							<p class="text-black text-xl">No tiles found</p>
+						</div>	
+					{:else}
+						{#each $tiles as tile}
+							<div class="rounded-2xl bg-white p-3">
+								<h2 class="mb-3 text-sm font-semibold text-blue-900">{tile.displayName}</h2>
+								<div class="flex snap-x snap-mandatory space-x-4 overflow-x-auto">
+									<div class="w-24 flex-none snap-center">
+										<div class="flex flex-col items-center p-2">
+											<div class="h-8 w-8 overflow-hidden">
+												<img
+													src={getImageUrl(tile.imageUrl)}
+													alt={tile.displayName}
+													class="h-full w-full object-cover"
+													on:error={handleImageError}
+												/>
+											</div>
+											<p class="line-clamp-3 text-center text-xs text-gray-700">
+												{tile.displayName}
+											</p>
 										</div>
-										<p class="line-clamp-3 text-center text-xs text-gray-700">
-											{tile.displayName}
-										</p>
 									</div>
 								</div>
 							</div>
-						</div>
-					{/each}
+						{/each}
+					{/if}
 				</div>
 			</div>
 		</div>

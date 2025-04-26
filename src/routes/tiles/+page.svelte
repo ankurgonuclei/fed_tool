@@ -89,8 +89,9 @@
     <form on:submit|preventDefault={handleSubmit} class="space-y-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label class="block text-sm font-medium text-gray-700">Type</label>
+          <label for="tile-type" class="block text-sm font-medium text-gray-700">Type</label>
           <select
+            id="tile-type"
             bind:value={formData.type}
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           >
@@ -102,8 +103,9 @@
 
         {#if formData.type === 'banner'}
           <div>
-            <label class="block text-sm font-medium text-gray-700">Template ID</label>
+            <label for="template-id" class="block text-sm font-medium text-gray-700">Template ID</label>
             <input
+              id="template-id"
               type="text"
               bind:value={formData.templateId}
               required
@@ -112,8 +114,9 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700">Project Number</label>
+            <label for="project-number" class="block text-sm font-medium text-gray-700">Project Number</label>
             <input
+              id="project-number"
               type="text"
               bind:value={formData.projectNumber}
               required
@@ -122,48 +125,52 @@
           </div>
 
           <div class="col-span-2">
-            <label class="block text-sm font-medium text-gray-700">Ad Unit IDs</label>
-            <div class="mt-1 space-y-2">
-              {#each formData.adUnitIds as id, index}
-                <div class="flex items-center gap-2">
-                  <input
-                    type="text"
-                    bind:value={formData.adUnitIds[index]}
-                    class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                  />
-                  <button
-                    type="button"
-                    on:click={() => formData.adUnitIds = formData.adUnitIds.filter((_, i) => i !== index)}
-                    class="text-red-600 hover:text-red-900"
-                  >
-                    Remove
-                  </button>
-                </div>
-              {/each}
-              <button
-                type="button"
-                on:click={() => formData.adUnitIds = [...formData.adUnitIds, '']}
-                class="text-indigo-600 hover:text-indigo-900"
-              >
-                Add Ad Unit ID
-              </button>
-            </div>
+            <fieldset>
+              <legend class="block text-sm font-medium text-gray-700">Ad Unit IDs</legend>
+              <div class="mt-1 space-y-2">
+                {#each formData.adUnitIds as id, index}
+                  <div class="flex items-center gap-2">
+                    <input
+                      type="text"
+                      bind:value={formData.adUnitIds[index]}
+                      class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                    />
+                    <button
+                      type="button"
+                      on:click={() => formData.adUnitIds = formData.adUnitIds.filter((_, i) => i !== index)}
+                      class="text-red-600 hover:text-red-900"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                {/each}
+                <button
+                  type="button"
+                  on:click={() => formData.adUnitIds = [...formData.adUnitIds, '']}
+                  class="text-indigo-600 hover:text-indigo-900"
+                >
+                  Add Ad Unit ID
+                </button>
+              </div>
+            </fieldset>
           </div>
 
           <div class="col-span-2">
             <div class="flex items-center">
               <input
+                id="large-banner"
                 type="checkbox"
                 bind:checked={formData.largeBanner}
                 class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
               />
-              <label class="ml-2 block text-sm text-gray-900">Large Banner</label>
+              <label for="large-banner" class="ml-2 block text-sm text-gray-900">Large Banner</label>
             </div>
           </div>
         {:else}
           <div>
-            <label class="block text-sm font-medium text-gray-700">Display Name</label>
+            <label for="display-name" class="block text-sm font-medium text-gray-700">Display Name</label>
             <input
+              id="display-name"
               type="text"
               bind:value={formData.displayName}
               required
@@ -172,8 +179,9 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700">Image URL</label>
+            <label for="image-url" class="block text-sm font-medium text-gray-700">Image URL</label>
             <input
+              id="image-url"
               type="text"
               bind:value={formData.imageUrl}
               required
@@ -185,8 +193,9 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700">Deeplink</label>
+            <label for="deeplink" class="block text-sm font-medium text-gray-700">Deeplink</label>
             <input
+              id="deeplink"
               type="text"
               bind:value={formData.deeplink}
               required
@@ -195,8 +204,9 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700">Shape</label>
+            <label for="shape" class="block text-sm font-medium text-gray-700">Shape</label>
             <select
+              id="shape"
               bind:value={formData.shape}
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
@@ -208,8 +218,9 @@
           </div>
 
           <div>
-            <label class="block text-sm font-medium text-gray-700">Grid Nudge Name</label>
+            <label for="grid-nudge" class="block text-sm font-medium text-gray-700">Grid Nudge Name</label>
             <select
+              id="grid-nudge"
               bind:value={formData.gridNudgeName}
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
@@ -224,8 +235,8 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         {#if formData.type !== 'banner'}
-          <div>
-            <label class="block text-sm font-medium text-gray-700">Android Version Constraints</label>
+          <fieldset>
+            <legend class="block text-sm font-medium text-gray-700">Android Version Constraints</legend>
             <div class="grid grid-cols-2 gap-2">
               <input
                 type="text"
@@ -240,10 +251,10 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               />
             </div>
-          </div>
+          </fieldset>
 
-          <div>
-            <label class="block text-sm font-medium text-gray-700">iOS Version Constraints</label>
+          <fieldset>
+            <legend class="block text-sm font-medium text-gray-700">iOS Version Constraints</legend>
             <div class="grid grid-cols-2 gap-2">
               <input
                 type="text"
@@ -258,7 +269,7 @@
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
               />
             </div>
-          </div>
+          </fieldset>
         {/if}
       </div>
 
@@ -266,17 +277,19 @@
         {#if formData.type !== 'banner'}
           <div class="flex items-center">
             <input
+              id="show-help-text"
               type="checkbox"
               bind:checked={formData.showHelpText}
               class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
             />
-            <label class="ml-2 block text-sm text-gray-900">Show Help Text</label>
+            <label for="show-help-text" class="ml-2 block text-sm text-gray-900">Show Help Text</label>
           </div>
 
           {#if formData.showHelpText}
             <div>
-              <label class="block text-sm font-medium text-gray-700">Help Text</label>
+              <label for="help-text" class="block text-sm font-medium text-gray-700">Help Text</label>
               <input
+                id="help-text"
                 type="text"
                 bind:value={formData.helpText}
                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -286,21 +299,23 @@
 
           <div class="flex items-center">
             <input
+              id="show-offer"
               type="checkbox"
               bind:checked={formData.showOffer}
               class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
             />
-            <label class="ml-2 block text-sm text-gray-900">Show Offer</label>
+            <label for="show-offer" class="ml-2 block text-sm text-gray-900">Show Offer</label>
           </div>
         {/if}
 
         <div class="flex items-center">
           <input
+            id="show-only-uat"
             type="checkbox"
             bind:checked={formData.showOnlyInUat}
             class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
           />
-          <label class="ml-2 block text-sm text-gray-900">Show Only in UAT</label>
+          <label for="show-only-uat" class="ml-2 block text-sm text-gray-900">Show Only in UAT</label>
         </div>
       </div>
 

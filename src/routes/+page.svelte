@@ -70,6 +70,7 @@
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
       <!-- Tiles Management Card -->
       <div class="bg-white overflow-hidden shadow rounded-lg">
         <div class="p-6">
