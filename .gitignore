@@ -30,3 +30,7 @@ vite.config.ts.timestamp-*
 src/lib/paraglide
 
 *storybook.log
+
+.firebase/
+firebase-debug.log
+firebase-debug.*.log

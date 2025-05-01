@@ -1,17 +1,16 @@
+// See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
 declare global {
 	namespace App {
-		interface Locals {
-			user: import('$lib/server/auth').SessionValidationResult['user'];
-			session: import('$lib/server/auth').SessionValidationResult['session'];
-		}
-	}
-}
-
-declare namespace NodeJS {
-	interface ProcessEnv {
-		DATABASE_URL: string;
+		// interface Error {}
+		// interface Locals {}
+		// interface PageData {}
+		// interface Platform {}
 	}
 }
 
 export {};
+
+declare module '$env/static/private' {
+	export const DATABASE_URL: string;
+}

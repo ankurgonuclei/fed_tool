@@ -3,7 +3,8 @@ import { createClient } from '@libsql/client';
 import * as schema from './schema';
 import { env } from '$env/dynamic/private';
 
-const databaseUrl = env.DATABASE_URL || 'file:local.db';
+// Use dynamic import for development, static for production
+const databaseUrl = process.env.DATABASE_URL || 'file:local.db';
 
 const client = createClient({ url: databaseUrl });
 
